@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ই-বুক ডাউনলোড পোর্টাল - DropShipping and WholesaleHub in BD</title>
+  
+  <!-- SEO Meta -->
+  <meta name="description" content="DropShipping and WholesaleHub in BD অফিসিয়াল ই-বুক ডাউনলোড পেজ। ওটিপি ভেরিফিকেশন করে ডাউনলোড করুন।">
+
+  <!-- Google Fonts: Hind Siliguri + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Hind Siliguri"', '"Inter"', 'sans-serif'],
+            number: ['"Inter"', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              navy: '#0F172A',
+              navyLight: '#1E293B',
+              orange: '#F97316',
+              orangeHover: '#EA580C',
+              whatsapp: '#25D366'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Modular Project Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#F8FAFC] text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 py-3.5 px-4 shadow-sm">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 text-orange-500 font-black text-lg flex items-center justify-center">
+          S
+        </div>
+        <div>
+          <span class="text-base font-black text-slate-900 block leading-tight">SERD VENTURES</span>
+          <span class="text-[9px] text-slate-500 tracking-wider font-semibold uppercase block">Official E-Book Delivery</span>
+        </div>
+      </a>
+
+      <a href="https://wa.me/8801560026371?text=Hi%2C%20I%20need%20help%20with%20OTP%20download" 
+         target="_blank" 
+         class="inline-flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full hover:bg-emerald-100 transition font-medium">
+        <svg class="w-3.5 h-3.5 fill-emerald-600" viewBox="0 0 24 24">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.05 21.95l4.882-1.388A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.95 7.95 0 01-4.223-1.208l-.303-.18-2.887.821.821-2.887-.18-.303A7.954 7.954 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+        </svg>
+        <span>সাহায্য দরকার?</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Download Container -->
+  <main class="max-w-xl mx-auto px-4 py-10 w-full flex-1 flex flex-col justify-center">
+    
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl text-center space-y-6">
+      
+      <!-- Ebook Book Thumbnail -->
+      <div class="w-28 sm:w-32 mx-auto drop-shadow-[0_15px_25px_rgba(249,115,22,0.25)]">
+        <img src="ebook-cover.jpg" 
+             alt="DropShipping and WholesaleHub in BD" 
+             class="w-full h-auto rounded-xl shadow-lg ring-1 ring-slate-200 block"
+             onerror="this.onerror=null; this.src='https://placehold.co/400x550/0f172a/f97316?text=DropShipping+in+BD';">
+      </div>
+
+      <!-- Title & Header Copy -->
+      <div>
+        <span class="text-orange-600 font-bold text-xs uppercase tracking-wider bg-orange-50 px-3 py-1 rounded-full border border-orange-200 inline-block mb-2">
+          সিকিউর ওটিপি ডাউনলোড পোর্টাল
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+          DropShipping and WholesaleHub in BD
+        </h1>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+          আপনার হোয়াটসঅ্যাপে পাওয়া <span class="font-bold text-slate-800">৬-ডিজিটের ওটিপি (OTP)</span> কোডটি নিচে দিয়ে সরাসরি ই-বুকের PDF ডাউনলোড করুন।
+        </p>
+      </div>
+
+      <!-- Initial State: OTP Entry Form -->
+      <div id="otpInputSection" class="space-y-4 pt-2">
+        <form onsubmit="handleDownloadOtpSubmit(event)" class="space-y-4">
+          
+          <div>
+            <label for="downloadOtpInput" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+              আপনার ৬-ডিজিটের ওটিপি কোড লিখুন
+            </label>
+            <input type="text" 
+                   id="downloadOtpInput" 
+                   required 
+                   maxlength="6" 
+                   pattern="[0-9]{6}" 
+                   inputmode="numeric" 
+                   placeholder="যেমন: 582914" 
+                   class="w-full max-w-xs mx-auto px-4 py-3.5 rounded-2xl border-2 border-slate-300 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 outline-none text-2xl sm:text-3xl font-number text-center font-black tracking-[0.3em] text-slate-900 placeholder:text-slate-300 placeholder:tracking-normal transition">
+          </div>
+
+          <div id="otpErrorMessage" class="hidden text-red-600 text-xs font-bold bg-red-50 p-3 rounded-xl border border-red-200 max-w-xs mx-auto">
+            ✕ ভুল ওটিপি কোড! অনুগ্রহ করে হোয়াটসঅ্যাপে পাঠানো সঠিক ৬-ডিজিটের কোড দিন।
+          </div>
+
+          <button type="submit" 
+                  id="verifyOtpBtn"
+                  class="w-full max-w-xs mx-auto bg-orange-500 hover:bg-orange-600 active:scale-95 text-white font-extrabold text-base sm:text-lg py-3.5 px-6 rounded-2xl shadow-lg shadow-orange-500/30 transition flex items-center justify-center gap-2">
+            <span>ভেরিফাই ও ডাউনলোড করুন</span>
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </button>
+
+        </form>
+
+        <p class="text-[11px] text-slate-400">
+          ওটিপি কোড পাননি? <a href="https://wa.me/8801560026371?text=Hi%2C%20I%20have%20paid%20bKash%20and%20need%20my%20OTP" target="_blank" class="text-emerald-600 font-bold hover:underline">হোয়াটসঅ্যাপে যোগাযোগ করুন</a>
+        </p>
+      </div>
+
+      <!-- Success State: Verified & Download Button (Hidden initially) -->
+      <div id="downloadSuccessSection" class="hidden space-y-5 pt-2">
+        <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-4 text-center">
+          <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto text-2xl font-black mb-2 shadow">
+            ✓
+          </div>
+          <h3 class="text-lg font-black text-emerald-800">ওটিপি ভেরিফিকেশন সফল হয়েছে!</h3>
+          <p class="text-xs text-emerald-700 mt-1">আপনার ই-বুক PDF ফাইলটি প্রস্তুত রয়েছে।</p>
+        </div>
+
+        <a id="directPdfDownloadBtn" 
+           href="DropShipping-and-WholesaleHub-in-BD.pdf" 
+           download="DropShipping-and-WholesaleHub-in-BD.pdf"
+           class="w-full max-w-xs mx-auto bg-emerald-600 hover:bg-emerald-700 text-white font-black text-lg py-4 px-6 rounded-2xl shadow-xl hover:shadow-emerald-500/30 transition flex items-center justify-center gap-2.5 transform active:scale-95">
+          <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span>PDF এখনই ডাউনলোড করুন</span>
+        </a>
+
+        <p class="text-xs text-slate-500 leading-relaxed">
+          ডাউনলোড শেষ হলে ফাইলটি আপনি যেকোনো PDF রিডার, গুগল ড্রাইভ বা ব্রাউজারে মোবাইল ও ল্যাপটপে সারাজীবন পড়তে পারবেন।
+        </p>
+
+        <div class="pt-2">
+          <a href="index.html" class="text-xs text-slate-500 hover:text-slate-800 underline">
+            ওয়েবসাইটে ফিরে যান
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 text-slate-400 text-xs py-4 text-center">
+    SERD VENTURES &copy; 2026. Secure Ebook Delivery.
+  </footer>
+
+  <!-- ================================================================= -->
+  <!-- Structured JavaScript Modules                                     -->
+  <!-- ================================================================= -->
+  <script src="js/config.js"></script>
+  <script src="js/otp.js"></script>
+  <script src="js/download.js"></script>
+</body>
+</html>

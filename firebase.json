@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": ".",
+    "cleanUrls": true,
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "**/.*",
+      "**/node_modules/**",
+      "firebase-debug.log",
+      "main file",
+      "*.bat",
+      "*.cmd",
+      "*.sh",
+      "*.exe"
+    ]
+  }
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Serd Ventures OTP Management</title>
+  
+  <!-- Google Fonts: Hind Siliguri + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Hind Siliguri"', '"Inter"', 'sans-serif'],
+            number: ['"Inter"', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              navy: '#0F172A',
+              navyLight: '#1E293B',
+              orange: '#F97316',
+              orangeHover: '#EA580C',
+              bkash: '#E2136E',
+              whatsapp: '#25D366'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Modular Project Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+
+  <!-- ================================================================= -->
+  <!-- 1. LOGIN SCREEN (Visible when not authenticated)                 -->
+  <!-- ================================================================= -->
+  <div id="loginScreen" class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950">
+    <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-md border border-slate-700/50">
+      
+      <!-- Brand Logo -->
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 rounded-2xl bg-slate-900 text-orange-500 font-black text-2xl flex items-center justify-center mx-auto shadow-lg mb-3">
+          S
+        </div>
+        <h2 class="text-2xl font-black text-slate-900">SERD VENTURES</h2>
+        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider block mt-1">Admin Control Panel</span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="space-y-4">
+        <div>
+          <label for="adminUsername" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            ইউজারনেম (Username)
+          </label>
+          <input type="text" 
+                 id="adminUsername" 
+                 required 
+                 placeholder="যেমন: admin"
+                 class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-sm text-slate-900 font-mono transition">
+        </div>
+
+        <div>
+          <label for="adminPassword" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            পাসওয়ার্ড (Password)
+          </label>
+          <input type="password" 
+                 id="adminPassword" 
+                 required 
+                 placeholder="••••••"
+                 class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none text-sm text-slate-900 font-mono transition">
+        </div>
+
+        <div id="loginErrorMsg" class="hidden text-red-500 text-xs font-bold bg-red-50 p-2.5 rounded-lg text-center border border-red-200">
+          ভুল ইউজারনেম অথবা পাসওয়ার্ড!
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition active:scale-[0.99] flex items-center justify-center gap-2">
+          <span>লগইন করুন</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+      </form>
+
+      <div class="mt-6 text-center text-[11px] text-slate-400">
+        🔒 সুরক্ষিত অ্যাডমিন এরিয়া • অননুমোদিত প্রবেশ নিষিদ্ধ
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- 2. ADMIN DASHBOARD (Visible when authenticated)                  -->
+  <!-- ================================================================= -->
+  <div id="dashboardScreen" class="hidden min-h-screen flex flex-col">
+    
+    <!-- Top Nav -->
+    <header class="bg-slate-900 text-white sticky top-0 z-30 shadow-md">
+      <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-orange-500 text-white font-black text-xl flex items-center justify-center shadow">
+            S
+          </div>
+          <div>
+            <h1 class="text-base sm:text-lg font-black tracking-wide leading-tight">SERD VENTURES ADMIN</h1>
+            <span class="text-[10px] text-slate-400 uppercase tracking-widest block">OTP & Download Manager</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="index.html" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white bg-slate-800 px-3 py-1.5 rounded-lg transition border border-slate-700">
+            <span>ওয়েবসাইট দেখুন</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+          <button onclick="handleAdminLogout()" class="bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 text-xs font-bold px-3.5 py-1.5 rounded-lg transition">
+            লগআউট
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
+      
+      <!-- Stats Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-xl font-black">
+            🔑
+          </div>
+          <div>
+            <span class="text-xs text-slate-500 font-bold uppercase tracking-wider block">মোট জেনারেটেড ওটিপি</span>
+            <span id="statTotalOtp" class="text-2xl font-black text-slate-900 font-number">0</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-black">
+            📥
+          </div>
+          <div>
+            <span class="text-xs text-slate-500 font-bold uppercase tracking-wider block">ই-বুক ডাউনলোড ফাইল</span>
+            <span class="text-sm font-bold text-slate-800 truncate block max-w-[200px]" id="statFileName">DropShipping Guide (PDF)</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-black">
+            ⚡
+          </div>
+          <div>
+            <span class="text-xs text-slate-500 font-bold uppercase tracking-wider block">ভেরিফিকেশন মোড</span>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">ইনস্ট্যান্ট ক্রিপ্টো সিগনেচার (Active)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OTP Generator Card -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        
+        <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl font-black text-slate-900">নতুন কাস্টমার ওটিপি জেনারেট করুন</h2>
+            <p class="text-xs text-slate-500 mt-0.5">বিকাশ পেমেন্ট কনফার্ম হওয়ার পর কাস্টমারকে এই ওটিপি কোডটি প্রদান করুন।</p>
+          </div>
+          <span class="hidden sm:inline-block bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full">
+            ১-ক্লিক ওটিপি
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+          
+          <!-- Generator Form Fields -->
+          <div class="md:col-span-6 space-y-4">
+            <div>
+              <label for="custName" class="block text-xs font-bold text-slate-700 mb-1">
+                কাস্টমারের নাম (ঐচ্ছিক)
+              </label>
+              <input type="text" 
+                     id="custName" 
+                     placeholder="যেমন: মোঃ সাকিব আহমেদ"
+                     class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-orange-500 outline-none text-sm text-slate-900">
+            </div>
+
+            <div>
+              <label for="custPhone" class="block text-xs font-bold text-slate-700 mb-1">
+                কাস্টমারের WhatsApp নাম্বার (ঐচ্ছিক)
+              </label>
+              <input type="tel" 
+                     id="custPhone" 
+                     placeholder="যেমন: 017XXXXXXXX"
+                     class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-orange-500 outline-none text-sm text-slate-900 font-number">
+              <span class="text-[11px] text-slate-400 mt-1 block">নাম্বার দিলে সরাসরি হোয়াটসঅ্যাপে ওটিপিসহ মেসেজ পাঠানো যাবে।</span>
+            </div>
+
+            <button onclick="handleGenerateNewOtp()" 
+                    type="button"
+                    class="w-full bg-orange-500 hover:bg-orange-600 active:scale-95 text-white font-black py-3 px-6 rounded-xl shadow-lg shadow-orange-500/25 transition flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+              <span>নতুন OTP তৈরি করুন</span>
+            </button>
+          </div>
+
+          <!-- Generated OTP Result Display Box -->
+          <div class="md:col-span-6 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center flex flex-col items-center justify-center min-h-[220px]">
+            
+            <div id="noOtpPlaceholder" class="text-slate-400 text-sm">
+              <svg class="w-10 h-10 mx-auto mb-2 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+              </svg>
+              <span>"নতুন OTP তৈরি করুন" বাটনে ক্লিক করলে এখানে কোড আসবে</span>
+            </div>
+
+            <div id="otpDisplayContainer" class="hidden w-full space-y-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 inline-block">
+                ✓ ওটিপি সফলভাবে তৈরি হয়েছে
+              </span>
+
+              <!-- Big Bold OTP -->
+              <div class="bg-white border-2 border-slate-900 rounded-2xl py-3 px-6 inline-block shadow-sm">
+                <span id="activeGeneratedOtp" class="text-4xl font-black font-number tracking-widest text-slate-900">
+                  ------
+                </span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
+                <button onclick="copyGeneratedOtp()" 
+                        id="copyOtpBtn"
+                        type="button" 
+                        class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-lg flex items-center gap-1.5 transition active:scale-95 shadow">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                  </svg>
+                  <span id="copyOtpBtnText">ওটিপি কপি করুন</span>
+                </button>
+
+                <button onclick="sendOtpToWhatsApp()" 
+                        id="whatsappSendBtn"
+                        type="button" 
+                        class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg flex items-center gap-1.5 transition active:scale-95 shadow">
+                  <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                  </svg>
+                  <span>WhatsApp এ পাঠান</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Config Card: PDF Download Link Settings -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+        <h3 class="text-base font-black text-slate-900 mb-1">ই-বুক PDF ডাউনলোড সোর্স লিংক</h3>
+        <p class="text-xs text-slate-500 mb-3">কাস্টমার যখন সঠিক ওটিপি দিয়ে ভেরিফাই করবে, তখন স্বয়ংক্রিয়ভাবে কোন ফাইল বা লিংক থেকে ডাউনলোড হবে তা এখানে সেট করতে পারবেন:</p>
+        
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="text" 
+                 id="customPdfUrl" 
+                 placeholder="DropShipping-and-WholesaleHub-in-BD.pdf অথবা Google Drive / Dropbox লিংক" 
+                 class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm outline-none focus:border-orange-500 font-mono">
+          <button onclick="saveCustomPdfUrl()" 
+                  type="button" 
+                  class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition">
+            লিংক সেভ করুন
+          </button>
+        </div>
+        <span id="saveUrlFeedback" class="hidden text-emerald-600 text-xs font-bold mt-1.5 block">✓ ডাউনলোড লিংক সফলভাবে সেভ হয়েছে!</span>
+      </div>
+
+      <!-- Generated OTP History Table -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-base font-black text-slate-900">সাম্প্রতিক ওটিপি লগ (History)</h3>
+          <button onclick="clearOtpHistory()" type="button" class="text-xs text-red-500 hover:underline">
+            লগ ক্লিয়ার করুন
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-slate-700 uppercase font-bold text-[10px] tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-4">তারিখ ও সময়</th>
+                <th class="py-3 px-4">ওটিপি কোড</th>
+                <th class="py-3 px-4">কাস্টমার নাম</th>
+                <th class="py-3 px-4">মোবাইল</th>
+                <th class="py-3 px-4 text-right">অ্যাকশন</th>
+              </tr>
+            </thead>
+            <tbody id="otpHistoryTableBody" class="divide-y divide-slate-100">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-500 text-xs py-4 text-center border-t border-slate-800">
+      SERD VENTURES Admin Dashboard &copy; 2026. All Rights Reserved.
+    </footer>
+
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- 3. STRUCTURED JAVASCRIPT MODULES                                  -->
+  <!-- ================================================================= -->
+  <script src="js/config.js"></script>
+  <script src="js/otp.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
