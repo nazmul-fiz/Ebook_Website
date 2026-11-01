@@ -2,6 +2,8 @@
 
 A high-converting landing page, automated bKash-to-WhatsApp checkout system, cryptographic OTP verification engine, and admin portal for digital ebook sales in Bangladesh.
 
+🌐 **Live Website**: [https://serdventure.web.app/](https://serdventure.web.app/)
+
 ---
 
 ## 📁 Project Structure
